@@ -38,16 +38,18 @@ variable "security_group_ingress_rules" {
   }))
   default = [
     {
-      from_port   = 80
+      from_port   = 80 
       to_port     = 80
       protocol    = "tcp"
+      description = "Allow HTTP traffic"
       cidr_blocks = ["0.0.0.0/0"]
     },
     {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+      description = "Allow SSH from my Public IP"
+      cidr_blocks = ["0.0.0.0/32"]
     }
   ]
 }
