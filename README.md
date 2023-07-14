@@ -39,7 +39,7 @@ terraform plan
 
 8. Review the output to ensure that the planned infrastructure matches your requirements.
 
-If the preview looks correct, run the following command to create the AWS environment:
+If the preview looks correct, run the following command to create the AWS environment using the variables file:
 ```bash
 terraform apply -var-file="testing.tfvars"
 ```
