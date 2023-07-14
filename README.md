@@ -1,5 +1,9 @@
 # Scalable and Secure Web Application Architecture
 
+## Link To Lucid Chart For the Infrastructure
+[Infrastructure Diagram](lucid.app/lucidchart/9775f31a-4430-439e-9353-239de71a644d/edit?view_items=IEfcSQ5t-SA6&invitationId=inv_f70105a8-532f-4a74-a0c1-6f6862c8bbf4)
+
+
 This Terraform script sets up an AWS environment with an auto-scaling EC2 setup behind a load balancer and an RDS instance. The script automates the creation of the infrastructure required to run a web application, ensuring secure communication between the load balancer and the RDS instance.
 
 ## Prerequisites
