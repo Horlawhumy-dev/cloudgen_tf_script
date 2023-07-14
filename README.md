@@ -6,7 +6,7 @@ This Terraform script sets up an AWS environment with an auto-scaling EC2 setup 
 Before executing the Terraform script, make sure you have the following prerequisites:
 
 ## Terraform installed on your machine.
-Terraform and AWS CLI on your local system
+Terraform and AWS CLI on your local system.
 AWS access key and secret access key with appropriate permissions to create resources (EC2, RDS, VPC, etc.).
 Your SSH key pair for accessing the EC2 instances as well.
 
