@@ -8,5 +8,5 @@ variable "aws_secret_access_key" {
 
 variable "region" {
   description = "AWS region"
-  default     = "us-east-2"
+  default     = "us-east-1"
 }

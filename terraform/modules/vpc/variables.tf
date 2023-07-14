@@ -1,11 +1,26 @@
 variable "region" {
   description = "AWS region"
-  default     = "us-east-1"
+  default     = var.region
 }
 
 variable "vpc_cidr_block" {
   description = "CIDR block for the VPC"
   default     = "10.0.0.0/16"
+}
+
+variable "vpc_db_cidr_block" {
+  description = "CIDR block for the DB VPC"
+  default     = "10.240.0.0/16"
+}
+
+variable "subnet1_db_cidr_block" {
+  description = "CIDR block for DB subnet"
+  default     = "10.0.1.0/24"
+}
+
+variable "subnet2_db_cidr_block" {
+  description = "CIDR block for DB subnet"
+  default     = "10.0.1.0/24"
 }
 
 variable "subnet1_cidr_block" {
@@ -28,7 +43,7 @@ variable "security_group_description" {
   default     = "Example Security Group"
 }
 
-variable "security_group_ingress_rules" {
+variable "web_security_group_ingress_rules" {
   description = "Ingress rules for the security group"
   type        = list(object({
     from_port   = number
@@ -38,13 +53,6 @@ variable "security_group_ingress_rules" {
   }))
   default = [
     {
-      from_port   = 80 
-      to_port     = 80
-      protocol    = "tcp"
-      description = "Allow HTTP traffic"
-      cidr_blocks = ["0.0.0.0/0"]
-    },
-    {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
@@ -52,12 +60,19 @@ variable "security_group_ingress_rules" {
       cidr_blocks = ["0.0.0.0/32"]
     },
     {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    description = "Allow HTTPS traffic" # if needed
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+      from_port   = 80 
+      to_port     = 80
+      protocol    = "tcp"
+      description = "Allow HTTP traffic"
+      cidr_blocks = ["0.0.0.0/0"]
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "Allow HTTPS traffic"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   ]
 }
 

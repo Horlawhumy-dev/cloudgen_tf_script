@@ -1,5 +1,5 @@
 # Create Auto Scaling Group
-resource "aws_autoscaling_group" "example_asg" {
+resource "aws_autoscaling_group" "web_ec2_asg" {
   name                 = var.autoscaling_group_name
   min_size             = var.min_size
   max_size             = var.max_size
@@ -15,5 +15,5 @@ resource "aws_autoscaling_group" "example_asg" {
 }
 
 output "autoscaling_group_name" {
-  value = aws_autoscaling_group.example_asg.id
+  value = aws_autoscaling_group.web_ec2_asg.id
 }
