@@ -1,3 +1,11 @@
+# Create RDS Subnet Group
+
+resource "aws_db_subnet_group" "example_db_subnet_group" {
+  name       = var.db_subnet_group_name
+  subnet_ids = [aws_subnet.example_subnet1.id, aws_subnet.example_subnet2.id]
+}
+
+
 # Create RDS Instance
 resource "aws_db_instance" "example_db" {
   identifier               = var.db_identifier
