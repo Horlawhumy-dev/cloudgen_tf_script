@@ -1,6 +1,8 @@
 # Scalable and Secure Web Application Architecture
 
-## Link To Lucid Chart For the Infrastructure
+## View the Lucid Chart Infrastructure Diagram
+Note: This requires an account with LucidChart to view the digram shared.
+
 [Infrastructure Diagram](https://lucid.app/lucidchart/9775f31a-4430-439e-9353-239de71a644d/edit?view_items=IEfcSQ5t-SA6&invitationId=inv_f70105a8-532f-4a74-a0c1-6f6862c8bbf4)
 
 
