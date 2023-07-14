@@ -6,6 +6,7 @@ This Terraform script sets up an AWS environment with an auto-scaling EC2 setup 
 Before executing the Terraform script, make sure you have the following prerequisites:
 
 ## Terraform installed on your machine.
+Terraform and AWS CLI on your local system
 AWS access key and secret access key with appropriate permissions to create resources (EC2, RDS, VPC, etc.).
 Your SSH key pair for accessing the EC2 instances as well.
 
@@ -13,17 +14,17 @@ Your SSH key pair for accessing the EC2 instances as well.
 ## Instructions
 1. To set up the AWS environment, follow these steps:
 
-2. Clone the repository or create a new directory for your Terraform files.
+2. Clone the repository
 
-3. Place the Terraform script (main.tf and variables.tf) in the global directory.
+3. Ensure the Terraform script (main.tf and variables.tf) in the global directory.
 
-Open the main.tf file and replace the placeholder values with your actual AWS credentials, desired configurations, and customize any other values to fit your requirements. Make sure to update the following values:
+Open the global variables.tf file and replace the placeholder values with your actual AWS credentials, desired configurations, and customize any other values to fit your requirements. Make sure to update the following values:
 
 * `YOUR_AWS_ACCESS_KEY` and `YOUR_AWS_SECRET_ACCESS_KEY` with your AWS access key and secret access key.
-* Set the desired AWS region in the `provider` block (`region` parameter).
-* Customize the VPC CIDR block, subnet CIDR blocks, security group rules, load balancer settings, EC2 instance settings, RDS instance settings, etc.
+* Set the desired AWS region in the block `region` as well.
+* Customize the VPC CIDR block, subnet CIDR blocks, security group rules, load balancer settings, Auto Scaling EC2 instance settings, RDS instance settings, etc.
 
-4. Create a user data script for your EC2 instances. This script is provided as base64 encoded data in the user_data attribute of the aws_launch_configuration resource. Replace the user-data.sh file with your own script or modify it according to your application requirements.
+4. Create a user data script for your EC2 instances. This script is provided as base64 encoded data in the `user_data_file` attribute of the aws_launch_configuration resource. Replace the `user-data_script.sh` file in the launch configuration module with your own script or modify it according to your application requirements.
 
 5. Open a terminal or command prompt and navigate to the directory containing the Terraform files.
 
@@ -50,7 +51,7 @@ Terraform will create the VPC, subnets, security groups, load balancer, launch c
 
 9. Once the command completes, the AWS environment is set up and ready for use. The load balancer DNS name will be displayed as the output.
 
-10. Congratulations and do not hesitate to reach out if any issue encoutered. 
-`harof.dev@gmail.com`
+10. Congratulations and do not hesitate to reach out if any issue is encoutered at
+`harof.dev@gmail.com`.
 
 
