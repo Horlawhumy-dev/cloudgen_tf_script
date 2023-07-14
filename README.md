@@ -1,12 +1,19 @@
 # Scalable and Secure Web Application Architecture
 
+This Terraform script sets up an AWS environment with an auto-scaling EC2 setup behind a load balancer and an RDS instance. The script automates the creation of the infrastructure required to run a web application, ensuring secure communication between the load balancer and the RDS instance.
+
 ## View the Lucid Chart Infrastructure Diagram
 Note: This requires an account with LucidChart to view the digram shared.
 
 [Infrastructure Diagram](https://lucid.app/lucidchart/9775f31a-4430-439e-9353-239de71a644d/edit?view_items=IEfcSQ5t-SA6&invitationId=inv_f70105a8-532f-4a74-a0c1-6f6862c8bbf4)
 
+I ensured the following in the infrastructure diagram for maximum security of the architecture:
 
-This Terraform script sets up an AWS environment with an auto-scaling EC2 setup behind a load balancer and an RDS instance. The script automates the creation of the infrastructure required to run a web application, ensuring secure communication between the load balancer and the RDS instance.
+1. The whole infrastructure is inside AWS Cloud and Global VPC
+2. Each Autoscaling group instance is in public subnet for public connection request from loadbalancer and gateway redirections
+3. RDS database is in separate VPC and private subnet for security.
+4. There is VPC Peering to match internal access of instances and database
+5. All infrastructures are in security group each togther with their VPC
 
 ## Prerequisites
 Before executing the Terraform script, make sure you have the following prerequisites:
