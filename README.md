@@ -1,4 +1,4 @@
-# AWS Environment Setup with Auto-scaling EC2 and RDS Instance Within VPC
+# Scalable and Secure Web Application Architecture
 
 This Terraform script sets up an AWS environment with an auto-scaling EC2 setup behind a load balancer and an RDS instance. The script automates the creation of the infrastructure required to run a web application, ensuring secure communication between the load balancer and the RDS instance.
 
