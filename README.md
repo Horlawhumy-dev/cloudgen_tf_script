@@ -2,6 +2,9 @@
 
 This Terraform script sets up an AWS environment with an auto-scaling EC2 set up behind a load balancer and an RDS instance. The script automates the creation of the infrastructure required to run a web application, ensuring secure communication between the load balancer and the RDS instance.
 
+![image](https://github.com/Horlawhumy-dev/cloudgen_tf_script/assets/60175418/5a505a7c-c0b1-486e-89b6-4b0279d75d00)
+
+
 ## View the Lucid Chart Infrastructure Diagram
 Note: This requires an account with LucidChart to view the diagram shared.
 
