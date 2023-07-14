@@ -26,3 +26,27 @@ resource "aws_security_group" "example_sg" {
     }
   }
 }
+
+## SG for DB VPC
+resource "aws_security_group" "db_sg" {
+  name = "db_sg"
+  description = "EC2 instances security group"
+  vpc_id      = aws_vpc.example_vpc.id
+ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    description = "Allow traffic to MySQL"
+    cidr_blocks = ["10.128.0.0/24"]
+  }
+egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+tags = {
+    Name = "db_sg"
+  }
+
+}

@@ -50,7 +50,14 @@ variable "security_group_ingress_rules" {
       protocol    = "tcp"
       description = "Allow SSH from my Public IP"
       cidr_blocks = ["0.0.0.0/32"]
-    }
+    },
+    {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    description = "Allow HTTPS traffic" # if needed
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   ]
 }
 
