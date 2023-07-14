@@ -50,4 +50,7 @@ Terraform will create the VPC, subnets, security groups, load balancer, launch c
 
 9. Once the command completes, the AWS environment is set up and ready for use. The load balancer DNS name will be displayed as the output.
 
+10. Congratulations and do not hesitate to reach out if any issue encoutered. 
+`harof.dev@gmail.com`
+
 
