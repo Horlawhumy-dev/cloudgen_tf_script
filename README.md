@@ -53,7 +53,7 @@ terraform init
 
 7. Run the following command to preview the resources that will be created:
 ```bash
-terraform plan
+terraform plan  -var-file="testing.tfvars"
 ```
 
 8. Review the output to ensure that the planned infrastructure matches your requirements.
@@ -69,7 +69,8 @@ Terraform will create the VPC, subnets, security groups, load balancer, launch c
 
 9. Once the command completes, the AWS environment is set up and ready for use. The load balancer DNS name will be displayed as the output.
 
-10. Congratulations and do not hesitate to reach out if any issue is encoutered at
-`harof.dev@gmail.com`.
-
+10. Run the following to destroy infrastructures
+```bash
+terraform destroy -var-file="testing.tfvars"
+```
 
