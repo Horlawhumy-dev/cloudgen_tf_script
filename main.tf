@@ -107,6 +107,7 @@ resource "aws_security_group" "web_app_sg" {
   }
 }
 
+#Internet gateway
 resource "aws_internet_gateway" "web_app_igw" {
   vpc_id = aws_vpc.web_app_vpc.id
   tags = {
@@ -124,7 +125,6 @@ resource "aws_lb" "web_app_lb" {
   security_groups    = [aws_security_group.web_app_sg.id]
   subnets            = [aws_subnet.example_subnet1.id, aws_subnet.example_subnet2.id]
 }
-
 
 
 resource "aws_lb_target_group" "web-app-target-group" {
@@ -164,8 +164,9 @@ resource "aws_lb_listener" "web_app_listener_http" {
 #   }
 # }
 
+#Launch template
 resource "aws_launch_template" "launch_template" {
-  name  ="my-instance-lt"
+  name = "my-instance-lt"
 
   block_device_mappings {
     device_name = "/dev/sdf"
@@ -177,8 +178,8 @@ resource "aws_launch_template" "launch_template" {
 
   instance_initiated_shutdown_behavior = "terminate"
 
-  image_id             = "ami-0716e5989a4e4fa52"
-  instance_type        = "t2.micro" 
+  image_id       = "ami-0716e5989a4e4fa52"
+  instance_type  = "t2.micro"
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -186,21 +187,20 @@ resource "aws_launch_template" "launch_template" {
     http_put_response_hop_limit = 1
     instance_metadata_tags      = "enabled"
   }
+
   monitoring {
     enabled = true
   }
+
   network_interfaces {
     device_index                = 0
     associate_public_ip_address = false
     security_groups             = [aws_security_group.web_app_sg.id]
   }
 
-
   placement {
     availability_zone = "eu-north-1a"
   }
-
-  # vpc_security_group_ids = [aws_security_group.web_app_sg.id]
 
   tag_specifications {
     resource_type = "instance"
@@ -214,32 +214,20 @@ resource "aws_launch_template" "launch_template" {
 }
 
 
-# Define LC template for AutoScaling
-# resource "aws_launch_configuration" "web_ec2_lc" {
-#   name                 ="my-instance-lc"
-#   image_id             = "ami-0716e5989a4e4fa52"
-#   instance_type        = "t2.micro" 
-#   security_groups      = [aws_security_group.web_app_sg.id]
-#   key_name             = "my-instance-key" 
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-
-  
-# }
-
-# # Create Auto Scaling Group
+#Auto Scaling Group using template
 resource "aws_autoscaling_group" "web_ec2_asg" {
   name                 = "auto-scaling-group"
-  max_size                  = 2
-  min_size                  = 1
+  max_size             = 2
+  min_size             = 1
   health_check_grace_period = 300
-  desired_capacity      = 1
+  desired_capacity     = 1
   vpc_zone_identifier  = [aws_subnet.example_subnet1.id, aws_subnet.example_subnet2.id]
+
   launch_template {
     id      = aws_launch_template.launch_template.id
     version = "$Latest"
   }
+
   tag {
     key                 = "autoscaling-group-key"
     value               = "ec2-group"
@@ -247,12 +235,8 @@ resource "aws_autoscaling_group" "web_ec2_asg" {
   }
 }
 
-
-
-
 # # Define RDS within the VPC and all Subnets
 # Create RDS Subnet Group
-
 resource "aws_db_subnet_group" "example_db_subnet_group" {
   name       = var.db_subnet_group_name
   subnet_ids = [aws_subnet.db_subnet_1.id, aws_subnet.db_subnet_2.id]
@@ -273,12 +257,10 @@ resource "aws_db_instance" "example_db" {
   skip_final_snapshot      = true
 }
 
-# output "launch_configuration_name" {
-#   value = aws_launch_configuration.web_ec2_lc.name
-# }
+
 output "load_balancer_dns_name" {
   value = aws_lb.web_app_lb.dns_name
 }
-# output "autoscaling_group_name" {
-#   value = aws_autoscaling_group.web_ec2_asg.id
-# }
+output "autoscaling_group_name" {
+  value = aws_autoscaling_group.web_ec2_asg.id
+}
