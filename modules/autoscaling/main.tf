@@ -1,15 +1,25 @@
+
+module "vpc" {
+  source = "../vpc"
+}
+
+module "launchconfiguration" {
+  source = "../launchconfiguration"
+}
+
 # Create Auto Scaling Group
 resource "aws_autoscaling_group" "web_ec2_asg" {
   name                 = var.autoscaling_group_name
-  min_size             = var.min_size
-  max_size             = var.max_size
-  desired_capacity     = var.desired_capacity
-  launch_configuration = var.launch_configuration_name
-  vpc_zone_identifier  = var.vpc_zone_identifiers
+  max_size                  = 3
+  min_size                  = 2
+  health_check_grace_period = 300
+  desired_capacity      = 2
+  launch_configuration = "${module.lauchconfiguration.launch_configuration_name}"
+  vpc_zone_identifier  = ["${module.vpc.example_subnet1}", "${module.vpc.example_subnet2}"]
 
   tag {
-    key                 = var.tag_name
-    value               = var.tag_value
+    key                 = "autoscaling-group"
+    value               = "ec2-group"
     propagate_at_launch = true
   }
 }

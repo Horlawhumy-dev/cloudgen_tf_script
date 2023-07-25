@@ -4,13 +4,13 @@ aws_secret_key="Pekw3EWBtztwzo2pfPTGT9DJKkPJgBVOFTtjBpWb"
 region="eu-north-1"
 
 
-# # For launch_configuration
-# launch_configuration_name = "my-instance-lc"
-# ami_id               = "ami-12345678"
-# instance_type        = "t2.micro" 
-# security_group_id    = module.aws_security_group.web_app_sg.id
-# key_pair_name        = "my-instance-key" 
-# user_data_file       = "./modules/launchconfiguration/user_data_script.sh"
+# For launch_configuration
+launch_configuration_name = "my-instance-lc"
+ami_id               = "ami-0716e5989a4e4fa52"
+instance_type        = "t2.micro" 
+security_group_id    = module.aws_security_group.web_app_sg.id
+key_pair_name        = "my-instance-key" 
+user_data_file       = "./user_data_script.sh"
 
 # # For RDS
 # db_identifier             = "web_db_example"

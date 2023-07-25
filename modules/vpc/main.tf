@@ -3,6 +3,21 @@ resource "aws_vpc" "web_app_vpc" {
   cidr_block = var.vpc_cidr_block
 }
 
+#WEB APP SUBNET 1
+resource "aws_subnet" "example_subnet1" {
+  vpc_id     = aws_vpc.web_app_vpc.id
+  cidr_block = var.subnet1_cidr_block
+}
+
+
+
+#WEB APP SUBNET 2
+resource "aws_subnet" "example_subnet2" {
+  vpc_id     = aws_vpc.web_app_vpc.id
+  cidr_block = var.subnet2_cidr_block
+}
+
+
 # DB VPC
 # resource "aws_vpc" "db_vpc" {
 #   cidr_block = var.vpc_db_cidr_block
@@ -34,28 +49,15 @@ resource "aws_vpc" "web_app_vpc" {
 #   }
 # }
 
-#WEB APP SUBNET 1
-resource "aws_subnet" "example_subnet1" {
-  vpc_id     = aws_vpc.web_app_vpc.id
-  cidr_block = var.subnet1_cidr_block
+
+
+# Internet Gateway for APP
+resource "aws_internet_gateway" "web_app_igw" {
+  vpc_id = aws_vpc.web_app_vpc.id
+  tags = {
+      Name = "web_app_igw"
+    }
 }
-
-
-
-#WEB APP SUBNET 2
-resource "aws_subnet" "example_subnet2" {
-  vpc_id     = aws_vpc.web_app_vpc.id
-  cidr_block = var.subnet2_cidr_block
-}
-
-
-## Internet Gateway for APP
-# resource "aws_internet_gateway" "web_app_igw" {
-#   vpc_id = module.aws_vpc.web_app_vpc.id
-#   tags = {
-#       Name = "web_app_igw"
-#     }
-# }
 
 
 ## Peering connection between web_app_vpc and db_vpc
@@ -163,3 +165,16 @@ resource "aws_security_group" "web_app_sg" {
 #     }
 
 # }
+
+output "example_subnet1" {
+  value = aws_subnet.example_subnet1
+}
+
+output "example_subnet2" {
+  value = aws_subnet.example_subnet2
+}
+
+output "web_app_sg" {
+  value = [aws_security_group.web_app_sg.name, aws_security_group.web_app_sg.name]
+}
+

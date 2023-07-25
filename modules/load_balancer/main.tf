@@ -13,7 +13,7 @@ resource "aws_lb_target_group" "web-app-target-group" {
   name     = "web-app-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = module.aws_vpc.web_app_vpc.id
+  vpc_id   = aws_vpc.web_app_vpc.id
 
   health_check {
     path = "/"
@@ -36,8 +36,8 @@ resource "aws_lb_listener" "web_app_listener_https" {
   load_balancer_arn = aws_lb.web_app_lb.arn
   port              = "443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08" #Subject to change
-  certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"  #Subject to change
+  # ssl_policy        = "ELBSecurityPolicy-2016-08" #Subject to change
+  # certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"  #Subject to change
 
   default_action {
     type             = "forward"
