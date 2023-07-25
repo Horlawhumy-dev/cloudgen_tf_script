@@ -165,7 +165,7 @@ resource "aws_lb_listener" "web_app_listener_http" {
 # }
 
 resource "aws_launch_template" "launch_template" {
-  name  ="my-instance-lc"
+  name  ="my-instance-lt"
 
   block_device_mappings {
     device_name = "/dev/sdf"
@@ -175,52 +175,10 @@ resource "aws_launch_template" "launch_template" {
     }
   }
 
-  # capacity_reservation_specification {
-  #   capacity_reservation_preference = "open"
-  # }
-
-  # cpu_options {
-  #   core_count       = 4
-  #   threads_per_core = 2
-  # }
-
-  # credit_specification {
-  #   cpu_credits = "standard"
-  # }
-
-  # disable_api_stop        = true
-  # disable_api_termination = true
-
-  # ebs_optimized = true
-
-  # elastic_gpu_specifications {
-  #   type = "test"
-  # }
-
-  # elastic_inference_accelerator {
-  #   type = "eia1.medium"
-  # }
-
-  # iam_instance_profile {
-  #   name  = "my-instance-lc"
-  # }
-
   instance_initiated_shutdown_behavior = "terminate"
-
-  # instance_market_options {
-  #   market_type = "spot"
-  # }
 
   image_id             = "ami-0716e5989a4e4fa52"
   instance_type        = "t2.micro" 
-
-  # kernel_id = "test"
-
-  # key_name = "test"
-
-  # license_specification {
-  #   license_configuration_arn = "arn:aws:license-manager:eu-west-1:123456789012:license-configuration:lic-0123456789abcdef0123456789abcdef"
-  # }
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -242,14 +200,13 @@ resource "aws_launch_template" "launch_template" {
     availability_zone = "eu-north-1a"
   }
 
-
   # vpc_security_group_ids = [aws_security_group.web_app_sg.id]
 
   tag_specifications {
     resource_type = "instance"
 
     tags = {
-      Name = "test"
+      Name = "test-ec2-lt"
     }
   }
 
