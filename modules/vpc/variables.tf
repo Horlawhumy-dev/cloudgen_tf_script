@@ -1,26 +1,11 @@
 variable "region" {
   description = "AWS region"
-  default     = var.region
+
 }
 
 variable "vpc_cidr_block" {
   description = "CIDR block for the VPC"
   default     = "10.0.0.0/16"
-}
-
-variable "vpc_db_cidr_block" {
-  description = "CIDR block for the DB VPC"
-  default     = "10.240.0.0/16"
-}
-
-variable "subnet1_db_cidr_block" {
-  description = "CIDR block for DB subnet"
-  default     = "10.0.1.0/24"
-}
-
-variable "subnet2_db_cidr_block" {
-  description = "CIDR block for DB subnet"
-  default     = "10.0.1.0/24"
 }
 
 variable "subnet1_cidr_block" {
@@ -33,9 +18,26 @@ variable "subnet2_cidr_block" {
   default     = "10.0.2.0/24"
 }
 
+
+# variable "vpc_db_cidr_block" {
+#   description = "CIDR block for the DB VPC"
+#   default     = "10.240.0.0/16"
+# }
+
+# variable "subnet1_db_cidr_block" {
+#   description = "CIDR block for DB subnet"
+#   default     = "10.0.1.0/24"
+# }
+
+# variable "subnet2_db_cidr_block" {
+#   description = "CIDR block for DB subnet"
+#   default     = "10.0.1.0/24"
+# }
+
+
 variable "security_group_name" {
   description = "Name of the security group"
-  default     = "example-sg"
+  default     = "web-app-sg"
 }
 
 variable "security_group_description" {
