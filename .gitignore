@@ -5,7 +5,7 @@ testing.tfvars
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+example/
 # Crash log files
 crash.log
 crash.*.log
