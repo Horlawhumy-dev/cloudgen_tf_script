@@ -14,6 +14,23 @@ provider "aws" {
   region = var.region
 }
 
+
+module "vpc" {
+  source = "./modules/vpc"
+  
+}
+
+module "launch_template" {
+  source = "./modules/launchtemplates"
+}
+
+module "auto_scaling" {
+  source = "./modules/autoscaling"
+}
+
+module "rds" {
+  source = "./modules/rds"
+}
 #WEB APP VPC
 resource "aws_vpc" "web_app_vpc" {
   cidr_block = var.vpc_cidr_block

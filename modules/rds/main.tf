@@ -1,4 +1,3 @@
-
 # # Define RDS within the VPC and all Subnets
 # Create RDS Subnet Group
 resource "aws_db_subnet_group" "example_db_subnet_group" {

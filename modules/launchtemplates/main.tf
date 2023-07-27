@@ -1,3 +1,4 @@
+#Launch template
 resource "aws_launch_template" "launch_template" {
   name = "my-instance-lt"
 

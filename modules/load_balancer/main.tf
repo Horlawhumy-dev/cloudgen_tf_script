@@ -1,4 +1,3 @@
-
 # Create LoadBalancer
 resource "aws_lb" "web_app_lb" {
   name               = "web-app-lb"
@@ -45,3 +44,13 @@ resource "aws_lb_listener" "web_app_listener_http" {
 #     target_group_arn = aws_lb_target_group.web-app-target-group.arn
 #   }
 # }
+
+output "load_balancer_dns_name" {
+  value = aws_lb.web_app_lb.dns_name
+}
+
+output "web_app_sg" {
+  value = [aws_security_group.web_app_sg.name, aws_security_group.web_app_sg.name]
+}
+
+
