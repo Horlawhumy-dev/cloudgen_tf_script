@@ -49,8 +49,3 @@ output "load_balancer_dns_name" {
   value = aws_lb.web_app_lb.dns_name
 }
 
-output "web_app_sg" {
-  value = [aws_security_group.web_app_sg.name, aws_security_group.web_app_sg.name]
-}
-
-
