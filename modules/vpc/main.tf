@@ -18,7 +18,6 @@ resource "aws_subnet" "example_subnet1" {
 }
 
 
-
 #WEB APP SUBNET 2
 resource "aws_subnet" "example_subnet2" {
   vpc_id     = aws_vpc.web_app_vpc.id
